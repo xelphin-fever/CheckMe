@@ -1,0 +1,237 @@
+:root {
+    --light-gray: #f1f1f1c4;
+    --gray: #e2e2e2;
+    --dark-gray:  #b4b4b4;;
+    --light-black: rgb(131, 131, 131);
+    --black: rgb(53, 53, 53);
+  }
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+#content{
+    display:flex;
+    flex-direction: row;
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: 2px;
+    color: var(--black);
+    height:100%;
+}
+
+/*---BAR---*/
+#bar-div{
+    display:flex;
+    flex-direction: column;
+    width: 450px;
+    min-height:100vh;
+    padding: 30px 5px;
+    background-color: var(--gray);
+    align-items: center;
+}
+/*TITLE*/
+#bar-title{
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/*SEARCH*/
+#search-input-div{
+    overflow: hidden;
+}
+#search-input{
+    background-color:#e2e2e257;
+    height: 45px;
+    width: 300px;
+    font-size: 25px;
+    border-radius: 20%;
+    border: none;
+    margin-bottom: 40px;
+}
+#search-input:focus{
+    border: none;
+    outline: none;
+    box-shadow: 8px 8px var(--gray);
+}
+/*PROJECT LIST*/
+#project-list-div{
+    width: 100%;
+    padding: 15px 30px;
+    display: flex;
+    flex-direction: column;
+}
+.project-item{
+    font-size: 30px;
+    transition: 0.2s all linear;
+}
+.project-item:hover{
+    font-size: 35px;
+    background-color: var(--gray);
+}
+.material-icons.md-36 { font-size: 36px;}
+
+/*ADD PROJECT BUTTON*/
+#add-project-btn{
+    border: none;
+    outline: none;
+    color: var(--light-black);
+    transition: 0.15s all linear;
+}
+#add-project-btn:hover{
+    transform: rotate(90deg) scale(1.2);
+}
+
+
+
+
+/*---PROJECT---*/
+#project-div{
+    width: 100%;
+    padding: 50px 70px;
+}
+
+/*TOP*/
+#project-top{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#check-project-btn{
+    outline:none;
+    border:none;
+    background-color: white;
+    color: var(--gray);
+}
+.material-icons.md-48 { font-size: 48px; }
+
+/*--MAIN--*/
+#main-div{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+/*MAIN TOP*/
+#main-top-div{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#main-title-div{
+    display: flex;
+    flex-direction: row;
+}
+#main-title{
+    font-size:70px;
+    margin-right:20px;
+}
+button{
+    background-color: transparent;
+    border:none;
+    outline: none;
+    color: var(--dark-gray);
+    transition: 0.3s all linear;
+}
+#edit-title-btn:hover{
+    transform: scale(1.2) rotate(360deg);
+}
+#main-info{
+    margin-top: 8px;
+    font-size:25px;
+}
+
+/*MAIN CHECKLIST*/
+#main-checklist-div{
+    display:flex;
+    flex-direction:column;
+    margin-top: 50px;
+    width: 100%;
+}
+/*CHECK ITEM*/
+.check-item{
+    margin-top: 20px;
+}
+/*Top*/
+.check-item-top{
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+.check-box-title-div{
+    display:flex;
+    flex-direction: row;
+}
+.check-box, .check-title{
+    display: inline-block;
+}
+.check-box{
+    width: 30px;
+    height: 30px;
+}
+.check-title{
+    font-size:30px;
+    margin-left: 15px;
+}
+.check-tag-div{
+    margin-left: 20px;
+}
+.check-tag{
+    font-size: 15px;
+    background-color: var(--gray);
+    border-radius: 15%;
+    padding: 5px 8px;
+}
+.check-icon{
+    font-size: 35px;
+}
+/*Expand*/
+.check-item-expand{
+    display:flex;
+    flex-direction: column;
+    margin-left: 40px;
+    width: 70%;
+}
+.check-info{
+    font-family: 'Quicksand', sans-serif;
+    resize: none;
+    font-size: 22px;
+    outline-color: var(--gray);
+    padding: 5px 10px;
+}
+.check-item-bottom{
+    display:flex;
+    flex-direction: row;
+    margin-top: 10px;
+    font-size: 20px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.check-item-bottom-right{
+    display:flex;
+    flex-direction: row;
+    width: 150px;
+    justify-content: space-between;
+}
+
+
+
+
+/*--ADD CHECK ITEM BUTTON--*/
+#add-check-btn{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    color: var(--dark-gray);
+}
+.material-icons.md-80 { font-size: 80px; }
+#add-check-btn:hover{
+    color: var(--light-black);
+}

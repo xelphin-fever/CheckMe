@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckMe</title>
+    <link href="./styles/style.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/dropdown.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/toggle.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <div id="content">
+        <!--SIDE BAR-->
+        <div id="bar-div">
+
+            <h2 id="bar-title"> CheckMe</h2>
+
+            <div id="search-input-div">
+                <input id="search-input" type="text" placeholder=" &#128269; Search...">
+            </div>
+
+            <!--Project List-->
+            <div id="project-list-div">
+
+                <div id="project-permanent-list-div">
+                    <h3 id="project-item-all" class="project-item"><span class="material-icons md-36">&#xE156;</span> All</h3>
+                    <h3 id="project-item-today" class="project-item"><span class="material-icons md-36">&#xE8DF;</span> Today</h3>
+                </div>
+
+                <div id="project-created-list-div">
+
+                    <h3 class="project-item"><span class="material-icons project-circle-span md-36" style="color:rgb(175, 134, 134);">&#xE061;</span> Trip</h3>
+                    <h3 class="project-item"><span class="material-icons project-circle-span md-36" style="color:rgb(74, 112, 74);">&#xE061;</span> Work</h3>
+                    
+                    <!--Add Project-->
+                    <div id="add-project-div">
+                        <button id="add-project-btn"><span id="add-project-span" class="material-icons md-36">&#xE147;</span></button>
+                        <!--JS Adds Input-->
+                        <!--JS Adds Submit-->
+                    </div>
+
+                </div>
+                
+            </div>
+
+        </div>
+
+        <!--PROJECT CHECKLIST-->
+        <div id="project-div">
+            <!--Top-->
+            <div id="project-top">
+                <div class="dropdown">
+                    <button class="dropbtn">Order By:</button>
+                    <div class="dropdown-content">
+                      <a href="#">Entry Date</a>
+                      <a href="#">Priority</a>
+                      <a href="#">Deadline</a>
+                    </div>
+                </div>
+                <button id="check-project-btn"><span id="check-project-span" class="material-icons md-48">&#xE86C;</span></button> 
+            </div>
+            <!--Main-->
+            <div id="main-div">
+                <!--Main Top-->
+                <div id="main-top-div">
+                    <div id="main-title-div">
+                        <h1 id="main-title">Trip</h1>
+                        <button id="edit-title-btn"><span id="edit-title-span" class="material-icons md-36">&#xE3C9;</span></button>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <!--Main Info-->
+                <div id="main-info-div">
+                    <p id="main-info">Edit me by clicking the pencil icon</p>
+                </div>
+
+                <!--Main CheckList-->
+                <div id="main-checklist-div">
+
+                    <div class="check-item" id="x0-check-item">
+                        <div class="check-item-top" id="x0-check-item-top">
+                            <div class="check-box-title-div">
+                                <button class="check-box-btn"><span class="material-icons md-36 check-box">&#xE86C;</span></button>
+                                <h4 class="check-title" id="x0-title">Pack Suitcase</h4>
+                                <div class="check-tag-div"  id="x0-tag">
+                                    <span class="check-tag">#Travel</span>
+                                    <span class="check-tag">#Plan</span>
+                                </div>
+                            </div>
+                            <h4 class="check-icon" id="x0-icon"><span> &#x1F4BC; </span></h4>
+                        </div>
+                        <div class="check-item-expand" style="display:none;" id="x0-expand-div">
+                            <textarea  type="text" class="check-info" name="info" rows="8" cols="50"  id="x0-info">Notes...</textarea>
+                            <div class="check-item-bottom">
+                                <h5>Due: <span class="check-due" id="x0-due">00/00/00</span></h5>
+                                <div class="check-item-bottom-right">
+                                    <button class="check-edit-btn" id="x0-btn-priority"><span class="material-icons md-36 check-box">&#xE16D;</span></button>
+                                    <button class="check-edit-btn" id="x0-btn-due"><span class="material-icons md-36 check-box">&#xE916;</span></button>
+                                    <button class="check-edit-btn" id="x0-btn-tag"><span class="material-icons md-36 check-box">&#xE54E;</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        
+
+        <div id="add-check-btn">
+            <button id="add-check-btn"><span id="add-check-span" class="material-icons md-80">&#xE147;</span></button>
+        </div>
+
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
