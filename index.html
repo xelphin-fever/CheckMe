@@ -30,20 +30,21 @@
             <div id="project-list-div">
 
                 <div id="project-permanent-list-div">
-                    <h3 id="project-item-all" class="project-item"><span class="material-icons md-36">&#xE156;</span> All</h3>
-                    <h3 id="project-item-today" class="project-item"><span class="material-icons md-36">&#xE8DF;</span> Today</h3>
+                    <h3 id="x0-all-h3" class="project-item"><span class="material-icons md-36">&#xE156;</span> All</h3>
+                    <h3 id="x1-today-h3" class="project-item"><span class="material-icons md-36">&#xE8DF;</span> Today</h3>
                 </div>
 
                 <div id="project-created-list-div">
 
-                    <h3 class="project-item"><span class="material-icons project-circle-span md-36" style="color:rgb(175, 134, 134);">&#xE061;</span> Trip</h3>
-                    <h3 class="project-item"><span class="material-icons project-circle-span md-36" style="color:rgb(74, 112, 74);">&#xE061;</span> Work</h3>
-                    
+                    <div id="added-projects-div">
+                        <h3 id="x2-trip-h3"class="project-item"><span class="material-icons project-circle-span md-36" style="color:rgb(175, 134, 134);">&#xE061;</span> Trip</h3>
+                        <h3 id="x3-work-h3" class="project-item"><span class="material-icons project-circle-span md-36" style="color:rgb(74, 112, 74);">&#xE061;</span> Work</h3>
+                    </div>
+
                     <!--Add Project-->
                     <div id="add-project-div">
                         <button id="add-project-btn"><span id="add-project-span" class="material-icons md-36">&#xE147;</span></button>
                         <!--JS Adds Input-->
-                        <!--JS Adds Submit-->
                     </div>
 
                 </div>
@@ -64,7 +65,7 @@
                       <a href="#">Deadline</a>
                     </div>
                 </div>
-                <button id="check-project-btn"><span id="check-project-span" class="material-icons md-48">&#xE86C;</span></button> 
+                <button id="delete-project-btn"><span id="delete-project-span" class="material-icons md-48">&#xE872;</span></button> 
             </div>
             <!--Main-->
             <div id="main-div">
@@ -87,7 +88,7 @@
                 <!--Main CheckList-->
                 <div id="main-checklist-div">
 
-                    <div class="check-item" id="x0-check-item">
+                    <div class="check-item" id="x0-check-item" data-project="x2-trip" style="display:block">
                         <div class="check-item-top" id="x0-check-item-top">
                             <div class="check-box-title-div">
                                 <button class="check-box-btn"><span class="material-icons md-36 check-box">&#xE86C;</span></button>

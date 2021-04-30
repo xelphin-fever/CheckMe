@@ -6,6 +6,7 @@
     --dark-gray:  #b4b4b4;;
     --light-black: rgb(131, 131, 131);
     --black: rgb(53, 53, 53);
+    --red: rgb(214, 73, 73);;
   }
 
 *{
@@ -77,6 +78,10 @@
 .material-icons.md-36 { font-size: 36px;}
 
 /*ADD PROJECT BUTTON*/
+#add-project-div{
+    display: flex;
+    flex-direction: row;
+}
 #add-project-btn{
     border: none;
     outline: none;
@@ -85,6 +90,13 @@
 }
 #add-project-btn:hover{
     transform: rotate(90deg) scale(1.2);
+}
+.project-input-name{
+    width: 80%;
+    font-size: 30px;
+    border: none;
+    text-decoration: underline dotted var(--dark-gray);
+    background-color: transparent;
 }
 
 
@@ -105,11 +117,14 @@
     align-items: center;
 }
 
-#check-project-btn{
+#delete-project-btn{
     outline:none;
     border:none;
     background-color: white;
     color: var(--gray);
+}
+#delete-project-btn:hover{
+    color: var(--red);
 }
 .material-icons.md-48 { font-size: 48px; }
 
@@ -309,7 +324,7 @@ button{
     color: var(--dark-gray);
 }
 #btn-close-form:hover{
-    color: rgb(214, 73, 73);
+    color: var(--red);
 }
 #form-icon-btn{
     position: absolute;
