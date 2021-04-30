@@ -143,20 +143,28 @@ const project = (() => {
         // Show Appropriate Check Items
         currentProject = editProjectObject.returnProperty(projectId,"attribute");
         checkItem.changeCheckItems(currentProject)
+        //NOTE: Hide Delete Button if in x0-all or x-1-today
+        deleteProjectBtn.style.display="block";
+        if (currentProject=="x0-all" || currentProject=="x1-today"){
+            deleteProjectBtn.style.display="none";
+        }
     }
 
     const getCurrentProject = () => currentProject;
 
     function deleteProject (){
-        //Remove From List
-        let listProject = document.querySelector(`#${currentProject}-h3`);
-        console.log(`${currentProject}-h3`);
-        console.log(listProject);
-        addedProjectsDiv.removeChild(listProject);
-        //Delete all Check Items from That Project
-        checkItem.deleteChecks(currentProject);
-        //Naviagte to All
-        document.querySelector('#x0-all-h3').click();
+        if (currentProject!= "x0-all" && currentProject!= "x0-today"){
+            //Remove From List
+            let listProject = document.querySelector(`#${currentProject}-h3`);
+            console.log(`${currentProject}-h3`);
+            console.log(listProject);
+            addedProjectsDiv.removeChild(listProject);
+            //Delete all Check Items from That Project
+            checkItem.deleteChecks(currentProject);
+            //Naviagte to All
+            document.querySelector('#x0-all-h3').click();
+        }
+        
     }
 
     return {
