@@ -6,6 +6,7 @@ const checkItem = (() => {
     editCheckObject.addNewCheck("Print Map",false,"&#xE3C9;",["print","travel"],"Need to print map","20/02/2005","4");
     console.log(editCheckObject.returnCheckAt(3));
     createCheckItem("3");
+    createCheckItem("2");
     //
     //
 
@@ -13,17 +14,26 @@ const checkItem = (() => {
     let icons = document.querySelectorAll(".check-icon");
     let previousExpanded=null;
 
+    //Update NodeLists When New Check Item
+    window.addEventListener('addedCheckItem', function (e) {
+        updateVariables();
+        addEventListeners();
+    });
     const updateVariables = () => {
-        checkItems = document.querySelectorAll(".check-item");
+        console.log("updating variables");
+        checkItemsTop = document.querySelectorAll(".check-item-top");
         icons = document.querySelectorAll(".check-icon");
+        console.log(checkItemsTop);
     }
     
 
-    checkItemsTop.forEach((checkItem) =>{
-        checkItem.addEventListener("click", changeItemSize);
-    })
-
-    
+    //RESIZE CHECK-ITEM WHEN CLICKED
+    addEventListeners();
+    function addEventListeners (){
+        checkItemsTop.forEach((checkItem) =>{
+            checkItem.addEventListener("click", changeItemSize);
+        })
+    }
     function changeItemSize(event) {
         let itemId = event.currentTarget.getAttribute("id");
         itemId=itemId[1];
@@ -40,6 +50,9 @@ const checkItem = (() => {
             itemExpand.style.display="none";
         }
     }
+
+    
+
 })();
 
 export {checkItem};

@@ -25,9 +25,19 @@ const editCheckObject = (() => {
         return allCheckItems[id.toString()];
     }
 
+    const updateCheckFor = (id, category, newValue) => {
+        allCheckItems[id.toString()][category] = newValue;
+    }
+
+    const mostRecentId = () => {
+        return idCount-1;
+    }
+
     return {
         addNewCheck,
         returnCheckAt,
+        updateCheckFor,
+        mostRecentId,
       };
 
 
@@ -128,6 +138,10 @@ const createCheckItem = (id) => {
     checkItem.appendChild(checkItemTop);
     checkItem.appendChild(expandDiv);
     checklist.appendChild(checkItem);
+
+    //So that I update the NodeLists that contain check items
+    var evt = new CustomEvent('addedCheckItem');
+    window.dispatchEvent(evt);
 }
 
 

@@ -22,6 +22,9 @@
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
+    "date-fns": "^2.21.1",
+    "emoji-picker-element": "^1.4.0",
+    "js-datepicker": "^5.18.0",
     "material-design-icons": "^3.0.1"
   }
 }

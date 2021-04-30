@@ -8,9 +8,11 @@
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
     <link href="./styles/dropdown.css" rel="stylesheet" type="text/css" />
     <link href="./styles/toggle.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/tooltip.css" rel="stylesheet" type="text/css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/js-datepicker/dist/datepicker.min.css">
 
 </head>
 <body>
@@ -112,6 +114,50 @@
 
                 </div>
 
+                <!--FORM-->
+                <div id="form-div" style="display:none" name="myForm">
+                    <form name="myForm" id="form" action="" method="" autocomplete="off">
+                        <h2 id="form-heading">Add New:</h2>
+                        <div class="form-input-div">
+                            <label for="form-title">Title:</label>
+                            <input type="text" id="form-title" maxlength="30" name="form-title" placeholder="ex. Organize Trip">
+                        </div>
+                        <div class="form-input-div">
+                            <label for="form-tags">Tags:</label>
+                            <input type="text" id="form-tags" maxlength="30" name="form-tags" placeholder="ex: work collaborate event">
+                            <p>(seperate tag names with a space)</p>
+                        </div>
+                        <div class="form-input-div">
+                            <label for="form-info">Info:</label> <br>
+                            <textarea id="form-info" name="form-info" placeholder="Notes..." rows="4" cols="55"></textarea>
+                        </div>
+                        <div class="form-input-div form-input-priority">
+                            <label for="form-priority">Priority:</label>
+                            <p>Low Priority</p>
+                            <input type="radio" id="form-priority-1" name="form-priority" value="1">
+                            <input type="radio" id="form-priority-2" name="form-priority" value="2">
+                            <input type="radio" id="form-priority-3" name="form-priority" value="3">
+                            <input type="radio" id="form-priority-4" name="form-priority" value="4">
+                            <input type="radio" id="form-priority-5" name="form-priority" value="5">
+                            <p>High Priority</p>
+                        </div>
+                        <div class="form-input-div form-input-date">
+                            <label for="form-due-btn">Date:</label>
+                            <input type="text" id="form-due-btn" name="form-due-btn" placeholder="">
+                        </div>
+                        <div id="div-btn-submit">
+                            <button id="btn-submit" type="submit" value="Submit">Submit</button>
+                        </div>
+                        <h2 id="btn-close-form"><span class="material-icons md-36">&#xE5C9;</span></h2>
+                        
+                        <div class="tooltip" id="form-icon-btn"><span class="material-icons md-36">&#xE87C;</span> 
+                            <span class="tooltiptext"><emoji-picker></emoji-picker></span>
+                        </div> 
+                        
+
+                    </form>
+                </div>
+
             </div>
         
 
@@ -119,7 +165,10 @@
             <button id="add-check-btn"><span id="add-check-span" class="material-icons md-80">&#xE147;</span></button>
         </div>
 
+        
+
     </div>
     <script src="main.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 </body>
 </html>
