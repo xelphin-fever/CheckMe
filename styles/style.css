@@ -1,3 +1,5 @@
+
+
 :root {
     --light-gray: #f1f1f1c4;
     --gray: #e2e2e2;
@@ -11,6 +13,8 @@
     padding:0;
     box-sizing: border-box;
 }
+
+
 
 #content{
     display:flex;
@@ -115,6 +119,7 @@
     display:flex;
     flex-direction: column;
     margin-top: 50px;
+    position: relative;
 }
 /*MAIN TOP*/
 #main-top-div{
@@ -234,4 +239,81 @@ button{
 .material-icons.md-80 { font-size: 80px; }
 #add-check-btn:hover{
     color: var(--light-black);
+}
+
+/*--FORM--*/
+#form-div{
+    position: absolute;
+    width: 800px;
+    top: 5%;
+    right: calc(50% - 400px);
+    background-color: var(--gray);
+    outline: 2px solid var(--dark-gray);
+    outline-offset: -5px;
+    color: var(--black);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+#form-heading{
+    font-size: 50px;
+}
+.form-input-div{
+    font-size: 40px;
+    margin: 4px 0;
+}
+.form-input-div input{
+    border: none;
+    background-color: transparent;
+    font-size: 35px;
+    font-family: 'Quicksand', sans-serif;
+    padding: 3px 5px;
+    width: 80%;
+    text-decoration: underline dotted var(--dark-gray);
+}
+.form-input-div p{
+    font-size:20px;
+}
+#form-info{
+    font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
+    resize:none;
+    border:none;
+}
+.form-input-priority{
+    display:flex;
+    flex-direction: row;
+    width: 400px;
+}
+.form-input-date{
+    display:flex;
+    flex-direction: row;
+}
+#form-due-btn{
+    display: inline;
+    color: var(--dark-gray);
+}
+#form-due-btn:hover{
+    color: var(--black);
+}
+#btn-submit{
+    font-size:30px;
+    color: var(--black);
+    border: 2px solid var(--dark-gray);
+    padding: 5px 8px;
+}
+#btn-close-form{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    color: var(--dark-gray);
+}
+#btn-close-form:hover{
+    color: rgb(214, 73, 73);
+}
+#form-icon-btn{
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    color: var(--black);
 }
