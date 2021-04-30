@@ -4,18 +4,19 @@ import { appendChildren, addAttributes, makeEditButton } from "./utilities"
 
 //---EDIT OBJECT: allCheckItems---
 const editCheckObject = (() => {
-    let idCount=3
+    let idCount=2;
     
     //Add New Check Item
-    const addNewCheck = (title,checked,icon,tags,info,due,priority) => {
+    const addNewCheck = (title,checked,icon,tags,info,due,priority,project) => {
         let newItem = {
-            title: title,
+            title: " "+title,
             checked:checked,
             icon:icon,
             tags:tags,
             info:info,
             due:due,
             priority:priority,
+            project:project,
         }
         allCheckItems[idCount.toString()]=newItem;
         idCount++;
@@ -55,7 +56,7 @@ const createCheckItem = (id) => {
 
     //CHECK ITEM
     let checkItem = document.createElement("div");
-    addAttributes(checkItem,[["class","check-item"],["id",`x${id}-check-item`]]);
+    addAttributes(checkItem,[["class","check-item"],["id",`x${id}-check-item`],["data-project",allCheckItems[id].project],["style","display:block"]]);
 
     //Top DIV (always visible)
     let checkItemTop = document.createElement("div");
@@ -154,6 +155,7 @@ let allCheckItems = {
         info:"Notes...",
         due: "00/00/00",
         priority: "3",
+        project: "trip",
     },
     "1": {
         title: "Read Travel Book",
@@ -163,15 +165,7 @@ let allCheckItems = {
         info:"Notes...",
         due: "00/00/00",
         priority: "2",
-    },
-    "2": {
-        title: "",
-        checked: false,
-        icon: "&#x26AA;",
-        tags: [],
-        info:"Notes...",
-        due: "00/00/00",
-        priority: "0",
+        project: "trip",
     },
 }
 

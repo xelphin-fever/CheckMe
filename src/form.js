@@ -1,5 +1,6 @@
 import datepicker from 'js-datepicker'
 import { createCheckItem, editCheckObject } from "./createCheckItem"
+import {project} from "./displayController"
 
 
 const form = (() => {
@@ -10,7 +11,11 @@ const form = (() => {
     const calenderBtn = document.querySelector("#form-due-btn");
     addBtn.addEventListener("click",showForm);
     closeBtn.addEventListener("click",closeForm);
+
+    //Date Picker
     const picker = datepicker(calenderBtn);
+
+    //Emoji Picker
     let currentEmoji = "&#x26AA;"
     document.querySelector('emoji-picker').addEventListener('emoji-click', event => {
         console.log(event.detail);
@@ -18,15 +23,18 @@ const form = (() => {
         currentEmoji = event.detail["emoji"].unicode;
     });
 
+    //SHOW FORM
     function showForm (){
         currentEmoji = "&#x26AA;"
         console.log("show form");
         form.style.display="block";
     }
+    //CLOSE FORM
     function closeForm(){
         form.style.display="none";
     }
     
+    //FORM SUBMITTED -> Create Check Item
     form.addEventListener("submit", function(event) {
         event.preventDefault(); //stop from submition
         let title = document.forms["myForm"]["form-title"].value;
@@ -34,7 +42,8 @@ const form = (() => {
         let info = document.forms["myForm"]["form-info"].value;
         let due = document.forms["myForm"]["form-due-btn"].value;
         let priority = document.forms["myForm"]["form-priority"].value;
-        editCheckObject.addNewCheck(title,false,currentEmoji,tags,info,due,priority);
+        let projectName = project.getCurrentProject();
+        editCheckObject.addNewCheck(title,false,currentEmoji,tags,info,due,priority,projectName);
         form.style.display="none";
         //form.reset();
         createCheckItem(editCheckObject.mostRecentId().toString());
