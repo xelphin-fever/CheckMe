@@ -6,6 +6,7 @@ import { createBarProject, editProjectObject} from "./projects"
 //----CHECK ITEM-----
 const checkItem = (() => {
 
+    let allChecksDiv = document.querySelector("#main-checklist-div");
     let checkItemsTop = document.querySelectorAll(".check-item-top");
     let icons = document.querySelectorAll(".check-icon");
     let previousExpanded=null;
@@ -54,6 +55,8 @@ const checkItem = (() => {
         allChecks.forEach((check) => {
             if (check.getAttribute("data-project")==project || (project=="x0-all")){
                 check.style.display= "block";
+                //Add Toggle logic (add checked data-attribute)
+                //Choose to either display all (from here) or just unChecked
             }
             else{
                 check.style.display="none";
@@ -61,8 +64,19 @@ const checkItem = (() => {
         })
     }
 
+    //DELETE ALL CHECK ITEMS FROM A PROJECT
+    const deleteChecks = (project) => {
+        let allChecks = document.querySelectorAll(".check-item");
+        allChecks.forEach((check) => {
+            if (check.getAttribute("data-project")==project){
+                allChecksDiv.removeChild(check);
+            }
+        })
+    }
+
     return {
         changeCheckItems,
+        deleteChecks,
     }
 
 })();
@@ -72,16 +86,18 @@ const checkItem = (() => {
 
 const project = (() => {
 
-    const addedProjectsDiv = document.querySelector("#added-projects-div");
+    let addedProjectsDiv = document.querySelector("#added-projects-div");
     const addProjectDiv = document.querySelector("#add-project-div");
     const addProjectBtn = document.querySelector("#add-project-span");
     let projectList = document.querySelectorAll(".project-item");
+    let deleteProjectBtn =document.querySelector("#delete-project-btn");
     let currentProject ="x2-trip";
 
     addProjectBtn.addEventListener("click", showInput);
     addProjectDiv.addEventListener("click", stopProp);
     window.addEventListener("click",hideInput);
     projectList.forEach((project) => project.addEventListener("click",navigateProject));
+    deleteProjectBtn.addEventListener("click", deleteProject);
 
     function showInput (){
         if (document.querySelector('.project-input-name') == null) {
@@ -130,6 +146,18 @@ const project = (() => {
     }
 
     const getCurrentProject = () => currentProject;
+
+    function deleteProject (){
+        //Remove From List
+        let listProject = document.querySelector(`#${currentProject}-h3`);
+        console.log(`${currentProject}-h3`);
+        console.log(listProject);
+        addedProjectsDiv.removeChild(listProject);
+        //Delete all Check Items from That Project
+        checkItem.deleteChecks(currentProject);
+        //Naviagte to All
+        document.querySelector('#x0-all-h3').click();
+    }
 
     return {
         getCurrentProject,
