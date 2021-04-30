@@ -125,10 +125,12 @@ const createCheckItem = (id) => {
         let editButtonDiv = document.createElement("div");
         addAttributes(editButtonDiv,[["class","check-item-bottom-right"]]);
         //Edit Buttons
+        let btnIcon = makeEditButton(id,"icon","&#xE87C;");
         let btnPriority = makeEditButton(id,"priority","&#xE16D;");
         let btnDue = makeEditButton(id,"due","&#xE916;");
         let btnTag = makeEditButton(id,"tag","&#xE54E;");
-        appendChildren(editButtonDiv,[btnPriority,btnDue,btnTag]);
+        let btnPencil = makeEditButton(id,"pencil","&#xE3C9;");
+        appendChildren(editButtonDiv,[btnIcon,btnPriority,btnDue,btnTag,btnPencil]);
         //Append
         appendChildren(expandBottomDiv,[dueElement,editButtonDiv]);
         appendChildren(expandDiv,[info,expandBottomDiv]);

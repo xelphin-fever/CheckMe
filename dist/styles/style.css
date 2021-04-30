@@ -147,7 +147,7 @@
     display: flex;
     flex-direction: row;
 }
-#main-title{
+#main-title, #main-title-input{
     font-size:70px;
     margin-right:20px;
 }
@@ -161,9 +161,11 @@ button{
 #edit-title-btn:hover{
     transform: scale(1.2) rotate(360deg);
 }
-#main-info{
+#main-info, #main-info-input{
     margin-top: 8px;
     font-size:25px;
+    min-height: 40px;
+    min-width: 90%;
 }
 
 /*MAIN CHECKLIST*/
@@ -237,7 +239,7 @@ button{
 .check-item-bottom-right{
     display:flex;
     flex-direction: row;
-    width: 150px;
+    width: 210px;
     justify-content: space-between;
 }
 

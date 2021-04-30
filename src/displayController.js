@@ -175,5 +175,91 @@ const project = (() => {
 
 
 
+//----EDITS-----
+
+const editDom = (() => {
+
+    //MAIN TITLE
+    let mainTitleDiv = document.querySelector("#main-title-div");
+    let mainTitle = document.querySelector("#main-title");
+    let mainTitleInput = document.querySelector("#main-title-input");
+    //MAIN INFO
+    let mainInfoDiv = document.querySelector("#main-info-div");
+    let mainInfo = document.querySelector("#main-info");
+    let mainInfoInput = document.querySelector("#main-info-input");
+
+    //Edit Project Title
+    mainTitleDiv.addEventListener("click", stopProp);
+    let dblTitle = (event) => editText(event,mainTitleInput,"title");
+    mainTitle.addEventListener("dblclick", dblTitle);
+    //Edit Project Info
+    mainInfoDiv.addEventListener("click", stopProp);
+    let dblInfo = (event) => editText(event,mainInfoInput,"info");
+    mainInfo.addEventListener("dblclick", dblInfo);
+    
+    window.addEventListener("click",hideInput);
+
+    let amEditing =false;
+    let currentProject = "x2-trip";
+    let currentProjectId = currentProject[1];
+    let currentText = null;
+    let currentInput = null;
+    let currentType = null;
+
+
+    function editText (event,input,type){
+        amEditing= true;
+        //Display None on Title and Replace with Input
+        console.log("I double clicked on text");
+        event.currentTarget.style.display = "none";
+        currentProject = project.getCurrentProject();
+        currentProjectId = currentProject[1];
+        let myText = editProjectObject.returnProperty(currentProjectId, type);
+        input.placeholder=myText;
+        input.style.display ="block";
+        //Set Currents for HideInput
+        currentText=event.currentTarget;
+        currentInput=input;
+        currentType=type;
+    };
+
+    function hideInput (){
+        if (amEditing==true){
+            amEditing=false;
+            let newText=currentInput.value;
+            currentInput.value="";
+            currentInput.style.display="none";
+            currentText.style.display="block";
+            //Update Text
+            if (newText!=""){
+                console.log("new text: ",newText);
+                editProjectObject.updateProjectFor(currentProjectId,currentType,newText);
+                currentText.textContent= newText;
+                //Update Title In List (Only for Main-Title!)
+                if (currentText==mainTitle){
+                    updateProjectListTitle(currentProject, newText);
+                }
+            }
+        }
+    }
+
+    function stopProp(event){
+        event.stopPropagation();
+    }
+
+    const updateProjectListTitle = (myProject, newTitle) => {
+        let listTitle = document.querySelector(`#${myProject}-h3`);
+        let listTitleSpan =document.querySelector(`[id=${myProject}-h3] > span`);
+        listTitle.textContent= newTitle;
+        listTitle.prepend(listTitleSpan);
+    };
+
+
+    
+
+})();
+
+
+
 
 export {checkItem,project};

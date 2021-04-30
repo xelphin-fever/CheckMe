@@ -72,8 +72,9 @@
                 <!--Main Top-->
                 <div id="main-top-div">
                     <div id="main-title-div">
-                        <h1 id="main-title">Trip</h1>
-                        <button id="edit-title-btn"><span id="edit-title-span" class="material-icons md-36">&#xE3C9;</span></button>
+                        <button id="edit-title-btn"><span id="edit-title-span" class="material-icons md-36">&#xE40A;</span></button>
+                        <h1 id="main-title" style="display:block">Trip</h1>
+                        <input type="text" id="main-title-input" class="edit-input" maxlength="15" name="main-title-input" placeholder="" style="display:none">
                     </div>
                     <label class="switch">
                         <input type="checkbox">
@@ -83,6 +84,7 @@
                 <!--Main Info-->
                 <div id="main-info-div">
                     <p id="main-info">Edit me by clicking the pencil icon</p>
+                    <input type="text" id="main-info-input" class="edit-input" maxlength="30" name="main-info-input" placeholder="" style="display:none">
                 </div>
 
                 <!--Main CheckList-->
@@ -105,9 +107,11 @@
                             <div class="check-item-bottom">
                                 <h5>Due: <span class="check-due" id="x0-due">00/00/00</span></h5>
                                 <div class="check-item-bottom-right">
+                                    <button class="check-edit-btn" id="x0-btn-icon"><span class="material-icons md-36 check-box">&#xE87C;</span></button>
                                     <button class="check-edit-btn" id="x0-btn-priority"><span class="material-icons md-36 check-box">&#xE16D;</span></button>
                                     <button class="check-edit-btn" id="x0-btn-due"><span class="material-icons md-36 check-box">&#xE916;</span></button>
                                     <button class="check-edit-btn" id="x0-btn-tag"><span class="material-icons md-36 check-box">&#xE54E;</span></button>
+                                    <button class="check-edit-btn" id="x0-btn-pencil"><span class="material-icons md-36 check-box">&#xE3C9;</span></button>
                                 </div>
                             </div>
                         </div>

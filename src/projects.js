@@ -30,7 +30,7 @@ const editProjectObject = (() => {
             title: title,
             icon:"&#xE061;",
             color:"black",
-            info:"Edit me by clicking the pencil icon",
+            info:"Double-Click to Edit Me (and the Title)",
             attribute:`x${idCount}-${title.toLowerCase()}`,
             removable: true,
         }
@@ -45,7 +45,7 @@ const editProjectObject = (() => {
         return allProjects[id.toString()][property];
     }
 
-    const updateCheckFor = (id, category, newValue) => {
+    const updateProjectFor = (id, category, newValue) => {
         allProjects[id.toString()][category] = newValue;
     }
 
@@ -57,7 +57,7 @@ const editProjectObject = (() => {
         addNewProject,
         returnProjectAt,
         returnProperty,
-        updateCheckFor,
+        updateProjectFor,
         mostRecentId,
       };
 
@@ -98,7 +98,7 @@ let allProjects = {
         title: "Trip",
         icon: "&#xE061;",
         color: "color:rgb(175, 134, 134);",
-        info: "Edit me by clicking the pencil icon",
+        info: "Double-Click to Edit Me (and the Title)",
         attribute: "x2-trip",
         removable: true,
     },
@@ -106,7 +106,7 @@ let allProjects = {
         title: "Work",
         icon: "&#xE061;",
         color: "color:rgb(175, 134, 134);",
-        info: "Edit me by clicking the pencil icon",
+        info: "Double-Click to Edit Me (and the Title)",
         attribute: "x3-work",
         removable: true,
     },
