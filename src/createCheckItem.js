@@ -1,5 +1,5 @@
 
-import { appendChildren, addAttributes, makeEditButton } from "./utilities"
+import { appendChildren, addAttributes,addTagsToDiv, makeToolTip } from "./utilities"
 
 
 //---EDIT OBJECT: allCheckItems---
@@ -86,12 +86,7 @@ const createCheckItem = (id) => {
         let checkTagDiv = document.createElement("div");
         addAttributes(checkTagDiv,[["class","check-tag-div"],["id",`x${id}-tag`]]);
         let myTags = allCheckItems[id].tags;
-        myTags.forEach((tag) => {
-            let newTag = document.createElement("span");
-            addAttributes(newTag,[["class","check-tag"]]);
-            newTag.textContent="#"+tag;
-            checkTagDiv.appendChild(newTag);
-        });
+        addTagsToDiv(checkTagDiv,myTags);
         //Append for Title
         appendChildren(checkItemTitle,[checkBoxBtn,checkTitle,checkTagDiv]);
         //-ICON
@@ -121,23 +116,30 @@ const createCheckItem = (id) => {
         addAttributes(dueSpan,[["class","check-due"],["id",`x${id}-due`]]);
         dueSpan.textContent=allCheckItems[id].due;
         dueElement.appendChild(dueSpan);
+        //Priority
+        let priorityElement = document.createElement("h5");
+        priorityElement.textContent="Priority: ";
+        let prioritySpan = document.createElement("span");
+        addAttributes(prioritySpan,[["class","check-priority"],["id",`x${id}-priority`]]);
+        prioritySpan.textContent=allCheckItems[id].priority;
+        priorityElement.appendChild(prioritySpan);
         //Edit Buttons Div
         let editButtonDiv = document.createElement("div");
         addAttributes(editButtonDiv,[["class","check-item-bottom-right"]]);
         //Edit Buttons
-        let btnIcon = makeEditButton(id,"icon","&#xE87C;");
-        let btnPriority = makeEditButton(id,"priority","&#xE16D;");
-        let btnDue = makeEditButton(id,"due","&#xE916;");
-        let btnTag = makeEditButton(id,"tag","&#xE54E;");
-        let btnPencil = makeEditButton(id,"pencil","&#xE3C9;");
-        appendChildren(editButtonDiv,[btnIcon,btnPriority,btnDue,btnTag,btnPencil]);
+        let btnIcon = makeToolTip(id,"icon","&#xE87C;","Choose Icon");
+        let btnPriority = makeToolTip(id,"priority","&#xE16D;","Choose Priority");
+        let btnDue = makeToolTip(id,"due","&#xE916;","Choose Due Date");
+        let btnTag = makeToolTip(id,"tag","&#xE54E;","Enter Tags");
+        let btnTitle = makeToolTip(id,"title","&#xE264;","Enter Title");
+        appendChildren(editButtonDiv,[btnIcon,btnPriority,btnDue,btnTag,btnTitle]);
         //Append
-        appendChildren(expandBottomDiv,[dueElement,editButtonDiv]);
+        appendChildren(expandBottomDiv,[dueElement,priorityElement,editButtonDiv]);
         appendChildren(expandDiv,[info,expandBottomDiv]);
     }
     createExpand();
     
-    //TESTING
+    //Appending Final
     checkItem.appendChild(checkItemTop);
     checkItem.appendChild(expandDiv);
     checklist.appendChild(checkItem);
@@ -155,7 +157,7 @@ let allCheckItems = {
         icon: "&#x1F4BC;",
         tags: ["travel","plan"],
         info:"Notes...",
-        due: "00/00/00",
+        due: "00-00-00",
         priority: "3",
         project: "trip",
     },
@@ -165,7 +167,7 @@ let allCheckItems = {
         icon: "&#x1F4D6;",
         tags: ["travel","plan"],
         info:"Notes...",
-        due: "00/00/00",
+        due: "00-00-00",
         priority: "2",
         project: "trip",
     },

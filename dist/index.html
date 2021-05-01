@@ -105,13 +105,24 @@
                         <div class="check-item-expand" style="display:none;" id="x0-expand-div">
                             <textarea  type="text" class="check-info" name="info" rows="8" cols="50"  id="x0-info">Notes...</textarea>
                             <div class="check-item-bottom">
-                                <h5>Due: <span class="check-due" id="x0-due">00/00/00</span></h5>
+                                <h5>Due: <span class="check-due" id="x0-due">00-00-00</span></h5>
+                                <h5>Priority: <span class="check-priority" id="x0-priority">3</span></h5>
                                 <div class="check-item-bottom-right">
                                     <button class="check-edit-btn" id="x0-btn-icon"><span class="material-icons md-36 check-box">&#xE87C;</span></button>
                                     <button class="check-edit-btn" id="x0-btn-priority"><span class="material-icons md-36 check-box">&#xE16D;</span></button>
                                     <button class="check-edit-btn" id="x0-btn-due"><span class="material-icons md-36 check-box">&#xE916;</span></button>
                                     <button class="check-edit-btn" id="x0-btn-tag"><span class="material-icons md-36 check-box">&#xE54E;</span></button>
-                                    <button class="check-edit-btn" id="x0-btn-pencil"><span class="material-icons md-36 check-box">&#xE3C9;</span></button>
+                                    
+                                    <div class="tooltip">
+                                        <button class="check-edit-btn" id="x0-btn-title"><span class="material-icons md-36 check-box">&#xE264;</span></button>
+                                        <span class="tooltiptext-v2">
+                                            <div class="tooltip-inner-div">
+                                                <h4>Enter New Title <span class="material-icons md-36 check-btn-title-send" id="x0-check-title-send">&#xF1DF;</span></h4>
+                                                <input type="text" id="x0-check-title-input" class="edit-input" maxlength="20" placeholder="">
+                                            </div>
+                                        </span>
+                                    </div> 
+
                                 </div>
                             </div>
                         </div>
@@ -139,7 +150,7 @@
                         <div class="form-input-div form-input-priority">
                             <label for="form-priority">Priority:</label>
                             <p>Low Priority</p>
-                            <input type="radio" id="form-priority-1" name="form-priority" value="1">
+                            <input type="radio" id="form-priority-1" name="form-priority" value="1" checked="checked">
                             <input type="radio" id="form-priority-2" name="form-priority" value="2">
                             <input type="radio" id="form-priority-3" name="form-priority" value="3">
                             <input type="radio" id="form-priority-4" name="form-priority" value="4">
@@ -148,7 +159,7 @@
                         </div>
                         <div class="form-input-div form-input-date">
                             <label for="form-due-btn">Date:</label>
-                            <input type="text" id="form-due-btn" name="form-due-btn" placeholder="">
+                            <input type="date" id="form-due-btn" name="form-due-btn" placeholder="">
                         </div>
                         <div id="div-btn-submit">
                             <button id="btn-submit" type="submit" value="Submit">Submit</button>
@@ -156,7 +167,7 @@
                         <h2 id="btn-close-form"><span class="material-icons md-36">&#xE5C9;</span></h2>
                         
                         <div class="tooltip" id="form-icon-btn"><span class="material-icons md-36">&#xE87C;</span> 
-                            <span class="tooltiptext"><emoji-picker></emoji-picker></span>
+                            <span class="tooltiptext"><emoji-picker id="form-icon-picker"></emoji-picker></span>
                         </div> 
                         
 

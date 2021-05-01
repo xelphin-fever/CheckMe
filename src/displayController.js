@@ -1,6 +1,7 @@
 //import { createCheckItem, editCheckObject } from "./createCheckItem"
-import { addAttributes} from "./utilities"
+import { addAttributes, addTagsToDiv} from "./utilities"
 import { createBarProject, editProjectObject} from "./projects"
+import { editCheckObject } from "./createCheckItem";
 
 
 //----CHECK ITEM-----
@@ -10,6 +11,18 @@ const checkItem = (() => {
     let checkItemsTop = document.querySelectorAll(".check-item-top");
     let icons = document.querySelectorAll(".check-icon");
     let previousExpanded=null;
+    //EDITS
+    //CHECK ITEM TOOLTIP SEND
+    let checkTitleSend = document.querySelectorAll(".check-btn-title-send");
+    let checkTagSend = document.querySelectorAll(".check-btn-tag-send");
+    let checkDueSend = document.querySelectorAll(".check-btn-due-send");
+    let checkPrioritySend = document.querySelectorAll(".check-btn-priority-send");
+    let checkIconSend = document.querySelectorAll(".check-btn-icon-send");
+    let checkEmojiSelect = document.querySelectorAll(".select-emoji-picker");
+    let currentEmoji="";
+
+    
+    
 
     //Update NodeLists When New Check Item
     window.addEventListener('addedCheckItem', function (e) {
@@ -20,17 +33,54 @@ const checkItem = (() => {
         console.log("updating variables");
         checkItemsTop = document.querySelectorAll(".check-item-top");
         icons = document.querySelectorAll(".check-icon");
-        console.log(checkItemsTop);
+        checkTitleSend = document.querySelectorAll(".check-btn-title-send");
+        checkTagSend = document.querySelectorAll(".check-btn-tag-send");
+        checkDueSend = document.querySelectorAll(".check-btn-due-send");
+        checkPrioritySend = document.querySelectorAll(".check-btn-priority-send");
+        checkIconSend = document.querySelectorAll(".check-btn-icon-send");
+        checkEmojiSelect = document.querySelectorAll(".select-emoji-picker");
     }
     
 
-    //RESIZE CHECK-ITEM WHEN CLICKED
+    //ADD/UPDATE EVENT LISTENERS
+    let sendTitle = (event) => applySend(event,"title");
+    let sendTag = (event) => applySend(event,"tag");
+    let sendDue = (event) => applySend(event,"due");
+    let sendPriority = (event) => applySend(event,"priority");
+    let sendIcon = (event) => applySend(event,"icon");
     addEventListeners();
     function addEventListeners (){
         checkItemsTop.forEach((checkItem) =>{
             checkItem.addEventListener("click", changeItemSize);
+        });
+        
+        checkTitleSend.forEach((send) => {
+            send.addEventListener("click",sendTitle);
+        });
+        
+        checkTagSend.forEach((send) => {
+            send.addEventListener("click",sendTag);
+        });
+        
+        checkDueSend.forEach((send) => {
+            send.addEventListener("click",sendDue);
+        });
+        
+        checkPrioritySend.forEach((send) => {
+            send.addEventListener("click",sendPriority);
+        });
+        checkEmojiSelect.forEach((emojiSelector) => {
+            emojiSelector.addEventListener('emoji-click', event => {
+                currentEmoji = event.detail["emoji"].unicode;
+            });
         })
+        checkIconSend.forEach((send) => {
+            send.addEventListener("click",sendIcon);
+        });
+        console.log("Updated Event Listeners");
     }
+
+    //RESIZE CHECK-ITEM WHEN CLICKED
     function changeItemSize(event) {
         let itemId = event.currentTarget.getAttribute("id");
         itemId=itemId[1];
@@ -72,6 +122,51 @@ const checkItem = (() => {
                 allChecksDiv.removeChild(check);
             }
         })
+    }
+
+    // // //
+
+    //EDIT CHECK
+     
+    //TITLE/TAGS
+    function applySend (event,type){
+        let myText=null;
+        console.log("Update: ",type);
+        let sendIdFull = event.currentTarget.getAttribute("id");
+        let sendId = sendIdFull[1];
+        if (type!="priority" || type!="icon"){
+            myText = document.querySelector(`#x${sendId}-check-${type}-input`).value;
+        }
+        if (myText!="" || type=="tag" || type=="priority"){
+            let myOriginal = document.querySelector(`#x${sendId}-${type}`);
+            if (type=="title"){
+                editCheckObject.updateCheckFor(sendId,type,myText);
+                myOriginal.textContent = myText;
+            }
+            else if (type=="tag"){
+                editCheckObject.updateCheckFor(sendId,type,myText.split(" "));
+                myOriginal.textContent = "";
+                addTagsToDiv(myOriginal,myText.split(" "));
+                console.log(editCheckObject.returnCheckAt(sendId).tags);
+            }
+            else if (type=="due"){
+                editCheckObject.updateCheckFor(sendId,type,myText);
+                myOriginal.textContent = "";
+                myOriginal.textContent = myText;
+            }
+            else if (type=="priority"){
+                myText= document.querySelector(`input[name="x${sendId}-check-priority-input"]:checked`).value;
+                editCheckObject.updateCheckFor(sendId,type,myText);
+                myOriginal.textContent = "";
+                myOriginal.textContent = myText;
+            }
+            else if (type=="icon"){
+                myText= currentEmoji;
+                editCheckObject.updateCheckFor(sendId,type,myText);
+                myOriginal.textContent = "";
+                myOriginal.textContent = myText;
+            }
+        }
     }
 
     return {
@@ -187,7 +282,10 @@ const editDom = (() => {
     let mainInfoDiv = document.querySelector("#main-info-div");
     let mainInfo = document.querySelector("#main-info");
     let mainInfoInput = document.querySelector("#main-info-input");
+    
 
+
+    //EDIT PROJECT
     //Edit Project Title
     mainTitleDiv.addEventListener("click", stopProp);
     let dblTitle = (event) => editText(event,mainTitleInput,"title");
@@ -196,10 +294,12 @@ const editDom = (() => {
     mainInfoDiv.addEventListener("click", stopProp);
     let dblInfo = (event) => editText(event,mainInfoInput,"info");
     mainInfo.addEventListener("dblclick", dblInfo);
-    
+    //
     window.addEventListener("click",hideInput);
 
-    let amEditing =false;
+
+
+    let amEditingDbl =false;
     let currentProject = "x2-trip";
     let currentProjectId = currentProject[1];
     let currentText = null;
@@ -208,7 +308,7 @@ const editDom = (() => {
 
 
     function editText (event,input,type){
-        amEditing= true;
+        amEditingDbl= true;
         //Display None on Title and Replace with Input
         console.log("I double clicked on text");
         event.currentTarget.style.display = "none";
@@ -224,8 +324,8 @@ const editDom = (() => {
     };
 
     function hideInput (){
-        if (amEditing==true){
-            amEditing=false;
+        if (amEditingDbl==true){
+            amEditingDbl=false;
             let newText=currentInput.value;
             currentInput.value="";
             currentInput.style.display="none";
@@ -256,6 +356,8 @@ const editDom = (() => {
 
 
     
+
+
 
 })();
 

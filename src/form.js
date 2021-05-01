@@ -12,12 +12,11 @@ const form = (() => {
     addBtn.addEventListener("click",showForm);
     closeBtn.addEventListener("click",closeForm);
 
-    //Date Picker
-    const picker = datepicker(calenderBtn);
+    
 
     //Emoji Picker
     let currentEmoji = "&#x26AA;"
-    document.querySelector('emoji-picker').addEventListener('emoji-click', event => {
+    document.querySelector('#form-icon-picker').addEventListener('emoji-click', event => {
         console.log(event.detail);
         console.log(event.detail["emoji"].unicode)
         currentEmoji = event.detail["emoji"].unicode;

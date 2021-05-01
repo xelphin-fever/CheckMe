@@ -150,6 +150,7 @@
 #main-title, #main-title-input{
     font-size:70px;
     margin-right:20px;
+    width: 500px;
 }
 button{
     background-color: transparent;
@@ -242,7 +243,22 @@ button{
     width: 210px;
     justify-content: space-between;
 }
-
+.check-edit-btn{
+    color: var(--dark-gray);
+    transition: 0.2s all linear;
+}
+.check-edit-btn:hover{
+    color: var(--light-black);
+    transform: scale(1.1);
+}
+.edit-input{
+    font-size: 20px;
+    width: 180px;
+}
+.check-edit-div-priority{
+    display: flex;
+    flex-direction: row;
+}
 
 
 
