@@ -28,6 +28,8 @@ const checkItem = (() => {
     let checkEmojiSelect = document.querySelectorAll(".select-emoji-picker");
     let currentEmoji="";
 
+    //DELETE
+    let checkDelete = document.querySelectorAll(".check-edit-btn-delete");
     
 
 
@@ -47,6 +49,7 @@ const checkItem = (() => {
         checkIconSend = document.querySelectorAll(".check-btn-icon-send");
         checkEmojiSelect = document.querySelectorAll(".select-emoji-picker");
         checkBoxs = document.querySelectorAll(".check-box");
+        checkDelete = document.querySelectorAll(".check-edit-btn-delete");
     }
     
 
@@ -83,6 +86,9 @@ const checkItem = (() => {
         });
         checkBoxs.forEach((checkBox) => {
             checkBox.addEventListener("click",flipCheckBox);
+        })
+        checkDelete.forEach((deleteBtn) => {
+            deleteBtn.addEventListener("click",deleteCheckItem);
         })
         console.log("Updated Event Listeners");
     }
@@ -159,6 +165,17 @@ const checkItem = (() => {
                 check.style.display="none";
             }
         })
+    }
+
+    //DELETE CHECK ITEM
+    function deleteCheckItem (event){
+        console.log(event.currentTarget.getAttribute("id"));
+        let itemId = event.currentTarget.getAttribute("id");
+        itemId= itemId[1];
+        let checkItem = document.querySelector(`#x${itemId}-check-item`);
+        console.log(checkItem);
+        allChecksDiv.removeChild(checkItem);
+        editCheckObject.deleteCheckAt(itemId);
     }
 
     //DELETE ALL CHECK ITEMS FROM A PROJECT

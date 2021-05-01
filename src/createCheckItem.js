@@ -1,5 +1,5 @@
 
-import { appendChildren, addAttributes,addTagsToDiv, makeToolTip } from "./utilities"
+import { appendChildren, addAttributes,addTagsToDiv, makeToolTip, makeEditButton } from "./utilities"
 
 
 //---EDIT OBJECT: allCheckItems---
@@ -34,11 +34,16 @@ const editCheckObject = (() => {
         return idCount-1;
     }
 
+    const deleteCheckAt = (id) =>{
+        delete allCheckItems[id.toString];
+    }
+
     return {
         addNewCheck,
         returnCheckAt,
         updateCheckFor,
         mostRecentId,
+        deleteCheckAt,
       };
 
 
@@ -138,7 +143,9 @@ const createCheckItem = (id) => {
         let btnDue = makeToolTip(id,"due","&#xE916;","Choose Due Date");
         let btnTag = makeToolTip(id,"tag","&#xE54E;","Enter Tags");
         let btnTitle = makeToolTip(id,"title","&#xE264;","Enter Title");
-        appendChildren(editButtonDiv,[btnIcon,btnPriority,btnDue,btnTag,btnTitle]);
+        let btnDelete = makeEditButton(id,"title","&#xE872;");
+        btnDelete.classList.add("check-edit-btn-delete");
+        appendChildren(editButtonDiv,[btnIcon,btnPriority,btnDue,btnTag,btnTitle,btnDelete]);
         //Append
         appendChildren(expandBottomDiv,[dueElement,priorityElement,editButtonDiv]);
         appendChildren(expandDiv,[info,expandBottomDiv]);

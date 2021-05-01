@@ -29,9 +29,9 @@ function addTagsToDiv (divTags,tags){
 //MAKE EDIT BUTTON
 function makeEditButton (id,type,spanIcon){
     let btnEdit = document.createElement("button");
-    addAttributes(btnEdit,[["class","check-edit-btn"],["id",`${id}-btn-${type}`]]);
+    addAttributes(btnEdit,[["class","check-edit-btn"],["id",`x${id}-btn-${type}`]]);
     let spanEdit = document.createElement("span");
-    addAttributes(spanEdit,[["class","material-icons md-36 check-box"]]);
+    addAttributes(spanEdit,[["class","material-icons md-36"]]);
     spanEdit.innerHTML=spanIcon;
     btnEdit.appendChild(spanEdit);
     return btnEdit;
