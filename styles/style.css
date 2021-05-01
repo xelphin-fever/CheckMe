@@ -3,7 +3,7 @@
 :root {
     --light-gray: #f1f1f1c4;
     --gray: #e2e2e2;
-    --dark-gray:  #b4b4b4;;
+    --dark-gray:  #b4b4b4;
     --light-black: rgb(131, 131, 131);
     --black: rgb(53, 53, 53);
     --red: rgb(214, 73, 73);;
@@ -181,11 +181,16 @@ button{
     margin-top: 20px;
 }
 /*Top*/
+.check-item-box-top-div{
+    display:flex;
+    flex-direction: row;
+}
 .check-item-top{
     display:flex;
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+    z-index: 0;
 }
 .check-box-title-div{
     display:flex;
@@ -197,6 +202,7 @@ button{
 .check-box{
     width: 30px;
     height: 30px;
+    z-index: 10;
 }
 .check-title{
     font-size:30px;
