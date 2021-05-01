@@ -134,7 +134,7 @@ const checkItem = (() => {
         console.log("Update: ",type);
         let sendIdFull = event.currentTarget.getAttribute("id");
         let sendId = sendIdFull[1];
-        if (type!="priority" || type!="icon"){
+        if (type!="priority" && type!="icon"){
             myText = document.querySelector(`#x${sendId}-check-${type}-input`).value;
         }
         if (myText!="" || type=="tag" || type=="priority"){
