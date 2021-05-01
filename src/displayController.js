@@ -6,11 +6,18 @@ import { editCheckObject } from "./createCheckItem";
 
 //----CHECK ITEM-----
 const checkItem = (() => {
+    //TOGGLE
+    let toggleChecks = document.querySelector("#check-toggle");
+    toggleChecks.addEventListener("click",toggleCheckItems)
 
+    //CHECK
+
+    let checkBoxs = document.querySelectorAll(".check-box");
     let allChecksDiv = document.querySelector("#main-checklist-div");
     let checkItemsTop = document.querySelectorAll(".check-item-top");
     let icons = document.querySelectorAll(".check-icon");
     let previousExpanded=null;
+
     //EDITS
     //CHECK ITEM TOOLTIP SEND
     let checkTitleSend = document.querySelectorAll(".check-btn-title-send");
@@ -22,7 +29,7 @@ const checkItem = (() => {
     let currentEmoji="";
 
     
-    
+
 
     //Update NodeLists When New Check Item
     window.addEventListener('addedCheckItem', function (e) {
@@ -39,6 +46,7 @@ const checkItem = (() => {
         checkPrioritySend = document.querySelectorAll(".check-btn-priority-send");
         checkIconSend = document.querySelectorAll(".check-btn-icon-send");
         checkEmojiSelect = document.querySelectorAll(".select-emoji-picker");
+        checkBoxs = document.querySelectorAll(".check-box");
     }
     
 
@@ -53,19 +61,15 @@ const checkItem = (() => {
         checkItemsTop.forEach((checkItem) =>{
             checkItem.addEventListener("click", changeItemSize);
         });
-        
         checkTitleSend.forEach((send) => {
             send.addEventListener("click",sendTitle);
         });
-        
         checkTagSend.forEach((send) => {
             send.addEventListener("click",sendTag);
         });
-        
         checkDueSend.forEach((send) => {
             send.addEventListener("click",sendDue);
         });
-        
         checkPrioritySend.forEach((send) => {
             send.addEventListener("click",sendPriority);
         });
@@ -77,6 +81,9 @@ const checkItem = (() => {
         checkIconSend.forEach((send) => {
             send.addEventListener("click",sendIcon);
         });
+        checkBoxs.forEach((checkBox) => {
+            checkBox.addEventListener("click",flipCheckBox);
+        })
         console.log("Updated Event Listeners");
     }
 
@@ -98,6 +105,48 @@ const checkItem = (() => {
         }
     }
 
+    //TOGGLE -> SHOW/HIDE CHECKED
+    function toggleCheckItems(){
+        let allChecks = document.querySelectorAll(".check-item");
+        if (toggleChecks.getAttribute("data-checked")=="true"){
+            toggleChecks.setAttribute("data-checked","false");
+        }
+        else{
+            toggleChecks.setAttribute("data-checked","true");
+        }
+        allChecks.forEach((check) => {
+            let checkId =check.getAttribute("id");
+            let checkBox = document.querySelector(`#x${checkId[1]}-check-box`)
+            if (checkBox.getAttribute("data-checked")=="true" && toggleChecks.getAttribute("data-checked")=="true"){
+                check.style.display= "block";
+            }
+            else if (checkBox.getAttribute("data-checked")=="true" && toggleChecks.getAttribute("data-checked")=="false"){
+                check.style.display="none";
+            }
+        })
+    }
+
+
+    //CHECK/UNCHECK ITEMS
+    function flipCheckBox(event){
+        console.log("flip check box");
+        let itemId = event.currentTarget.getAttribute("id");
+        itemId=itemId[1];
+        let projectAttribute = editCheckObject.returnCheckAt(itemId).project;
+        let projectColor = editProjectObject.returnProperty(projectAttribute[1],"color");
+        console.log("id and color",itemId,projectColor);
+        if (editCheckObject.returnCheckAt(itemId).checked==false){
+            editCheckObject.updateCheckFor(itemId,"checked",true);
+            event.currentTarget.setAttribute("data-checked","true");
+            event.currentTarget.setAttribute("style",projectColor);
+        }
+        else{
+            editCheckObject.updateCheckFor(itemId,"checked",false);
+            event.currentTarget.setAttribute("data-checked","false");
+            event.currentTarget.setAttribute("style","color: #b4b4b4");
+        }
+    }
+
     //SHOW APPROPRIATE CHECK ITEMS
     const changeCheckItems = (project) => {
         let allChecks = document.querySelectorAll(".check-item");
@@ -105,8 +154,6 @@ const checkItem = (() => {
         allChecks.forEach((check) => {
             if (check.getAttribute("data-project")==project || (project=="x0-all")){
                 check.style.display= "block";
-                //Add Toggle logic (add checked data-attribute)
-                //Choose to either display all (from here) or just unChecked
             }
             else{
                 check.style.display="none";

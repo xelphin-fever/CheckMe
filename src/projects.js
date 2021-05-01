@@ -81,7 +81,7 @@ let allProjects = {
     "0": {
         title: "All",
         icon: "&#xE156;",
-        color: "black",
+        color: "color: black",
         info: "All To-Dos Are Listed Here",
         attribute: "x0-all",
         removable: false,
@@ -89,7 +89,7 @@ let allProjects = {
     "1": {
         title: "Today",
         icon: "&#xE8DF;",
-        color: "black",
+        color: "color: black",
         info: "These are the To-Dos for Today",
         attribute: "x1-today",
         removable: false,

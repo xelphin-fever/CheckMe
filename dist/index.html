@@ -77,7 +77,7 @@
                         <input type="text" id="main-title-input" class="edit-input" maxlength="15" name="main-title-input" placeholder="" style="display:none">
                     </div>
                     <label class="switch">
-                        <input type="checkbox">
+                        <input type="checkbox" id="check-toggle" data-checked="true" checked>
                         <span class="slider round"></span>
                     </label>
                 </div>
@@ -91,30 +91,33 @@
                 <div id="main-checklist-div">
 
                     <div class="check-item" id="x0-check-item" data-project="x2-trip" style="display:block">
-                        <div class="check-item-top" id="x0-check-item-top">
-                            <div class="check-box-title-div">
-                                <button class="check-box-btn"><span class="material-icons md-36 check-box">&#xE86C;</span></button>
-                                <h4 class="check-title" id="x0-title">Pack Suitcase</h4>
-                                <div class="check-tag-div"  id="x0-tag">
-                                    <span class="check-tag">#Travel</span>
-                                    <span class="check-tag">#Plan</span>
+                        <div class="check-item-box-top-div">
+                            <button class="check-box-btn"><span class="material-icons md-36 check-box" id="x0-check-box" data-checked="false" style="color: #b4b4b4">&#xE86C;</span></button>
+                            <div class="check-item-top" id="x0-check-item-top">
+                                <div class="check-box-title-div">
+                                    <h4 class="check-title" id="x0-title">Pack Suitcase</h4>
+                                    <div class="check-tag-div"  id="x0-tag">
+                                        <span class="check-tag">#Travel</span>
+                                        <span class="check-tag">#Plan</span>
+                                    </div>
                                 </div>
+                                <h4 class="check-icon" id="x0-icon"><span> &#x1F4BC; </span></h4>
                             </div>
-                            <h4 class="check-icon" id="x0-icon"><span> &#x1F4BC; </span></h4>
                         </div>
+                        
                         <div class="check-item-expand" style="display:none;" id="x0-expand-div">
                             <textarea  type="text" class="check-info" name="info" rows="8" cols="50"  id="x0-info">Notes...</textarea>
                             <div class="check-item-bottom">
                                 <h5>Due: <span class="check-due" id="x0-due">00-00-00</span></h5>
                                 <h5>Priority: <span class="check-priority" id="x0-priority">3</span></h5>
                                 <div class="check-item-bottom-right">
-                                    <button class="check-edit-btn" id="x0-btn-icon"><span class="material-icons md-36 check-box">&#xE87C;</span></button>
-                                    <button class="check-edit-btn" id="x0-btn-priority"><span class="material-icons md-36 check-box">&#xE16D;</span></button>
-                                    <button class="check-edit-btn" id="x0-btn-due"><span class="material-icons md-36 check-box">&#xE916;</span></button>
-                                    <button class="check-edit-btn" id="x0-btn-tag"><span class="material-icons md-36 check-box">&#xE54E;</span></button>
+                                    <button class="check-edit-btn" id="x0-btn-icon"><span class="material-icons md-36">&#xE87C;</span></button>
+                                    <button class="check-edit-btn" id="x0-btn-priority"><span class="material-icons md-36">&#xE16D;</span></button>
+                                    <button class="check-edit-btn" id="x0-btn-due"><span class="material-icons md-36">&#xE916;</span></button>
+                                    <button class="check-edit-btn" id="x0-btn-tag"><span class="material-icons md-36">&#xE54E;</span></button>
                                     
                                     <div class="tooltip">
-                                        <button class="check-edit-btn" id="x0-btn-title"><span class="material-icons md-36 check-box">&#xE264;</span></button>
+                                        <button class="check-edit-btn" id="x0-btn-title"><span class="material-icons md-36">&#xE264;</span></button>
                                         <span class="tooltiptext-v2">
                                             <div class="tooltip-inner-div">
                                                 <h4>Enter New Title <span class="material-icons md-36 check-btn-title-send" id="x0-check-title-send">&#xF1DF;</span></h4>

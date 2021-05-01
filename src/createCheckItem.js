@@ -59,6 +59,8 @@ const createCheckItem = (id) => {
     addAttributes(checkItem,[["class","check-item"],["id",`x${id}-check-item`],["data-project",allCheckItems[id].project],["style","display:block"]]);
 
     //Top DIV (always visible)
+    let checkItemBoxAndTop = document.createElement("div");
+    addAttributes(checkItemBoxAndTop,[["class","check-item-box-top-div"]]);
     let checkItemTop = document.createElement("div");
     addAttributes(checkItemTop,[["class","check-item-top"],["id",`x${id}-check-item-top`]]);
 
@@ -68,16 +70,18 @@ const createCheckItem = (id) => {
     
 
     const createTop = () => {
-        //-TITLE
-        let checkItemTitle = document.createElement("div");
-        addAttributes(checkItemTitle,[["class","check-box-title-div"]]);
         //Check Box
         let checkBoxBtn = document.createElement("button");
         addAttributes(checkBoxBtn,[["class","check-box-btn"]]);
         let checkBoxSpan = document.createElement("span");
-        addAttributes(checkBoxSpan,[["class","material-icons md-36 check-box"]]);
+        addAttributes(checkBoxSpan,[["class","material-icons md-36 check-box"],["id",`x${id}-check-box`],["data-checked",`${allCheckItems[id].checked}`],["style","color: #b4b4b4"]]);
         checkBoxSpan.innerHTML="&#xE86C;";
         checkBoxBtn.appendChild(checkBoxSpan);
+        checkItemBoxAndTop.appendChild(checkBoxBtn);
+        // //
+        //-TITLE
+        let checkItemTitle = document.createElement("div");
+        addAttributes(checkItemTitle,[["class","check-box-title-div"]]);
         //Title
         let checkTitle = document.createElement("h4");
         addAttributes(checkTitle,[["class","check-title"],["id",`x${id}-title`]]);
@@ -88,7 +92,7 @@ const createCheckItem = (id) => {
         let myTags = allCheckItems[id].tags;
         addTagsToDiv(checkTagDiv,myTags);
         //Append for Title
-        appendChildren(checkItemTitle,[checkBoxBtn,checkTitle,checkTagDiv]);
+        appendChildren(checkItemTitle,[checkTitle,checkTagDiv]);
         //-ICON
         let checkIcon = document.createElement("h4");
         addAttributes(checkIcon,[["class","check-icon"],["id",`x${id}-icon`]]);
@@ -97,6 +101,8 @@ const createCheckItem = (id) => {
         checkIcon.appendChild(iconSpan);
         //Append for Top
         appendChildren(checkItemTop,[checkItemTitle,checkIcon]);
+        // //
+        checkItemBoxAndTop.appendChild(checkItemTop);
     }
     createTop();
 
@@ -140,13 +146,14 @@ const createCheckItem = (id) => {
     createExpand();
     
     //Appending Final
-    checkItem.appendChild(checkItemTop);
+    checkItem.appendChild(checkItemBoxAndTop);
     checkItem.appendChild(expandDiv);
     checklist.appendChild(checkItem);
 
     //So that I update the NodeLists that contain check items
     var evt = new CustomEvent('addedCheckItem');
     window.dispatchEvent(evt);
+    console.log(allCheckItems);
 }
 
 
@@ -159,7 +166,7 @@ let allCheckItems = {
         info:"Notes...",
         due: "00-00-00",
         priority: "3",
-        project: "trip",
+        project: "x2-trip",
     },
     "1": {
         title: "Read Travel Book",
@@ -169,7 +176,7 @@ let allCheckItems = {
         info:"Notes...",
         due: "00-00-00",
         priority: "2",
-        project: "trip",
+        project: "x2-trip",
     },
 }
 
