@@ -491,9 +491,9 @@ const editDom = (() => {
     //PROJECT COLOR
     let picker = new Picker(colorProjectHolder);
     picker.onDone = function(myColor) {
+        currentProject=project.getCurrentProject();
+        currentProjectId=currentProject[1];
         let chosenColor=myColor.rgbaString;
-        console.log(chosenColor);
-        //colorProjectDiv.style.background = color.rgbaString;
         //Change Circle Icon
         editProjectObject.updateProjectFor(currentProjectId,"color",`color: ${chosenColor}`);
         let projectAttribute = editProjectObject.returnProperty(currentProjectId,"attribute");
