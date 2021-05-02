@@ -83,7 +83,7 @@ const createCheckItem = (id) => {
         let checkBoxBtn = document.createElement("button");
         addAttributes(checkBoxBtn,[["class","check-box-btn"]]);
         let checkBoxSpan = document.createElement("span");
-        addAttributes(checkBoxSpan,[["class","material-icons md-36 check-box"],["id",`x${id}-check-box`],["data-checked",`${allCheckItems[id].checked}`],["style","color: #b4b4b4"]]);
+        addAttributes(checkBoxSpan,[["class","material-icons md-36 check-box"],["id",`x${id}-check-box`],["data-checked",`${allCheckItems[id].checked}`],["style","color: #e2d7be"]]);
         checkBoxSpan.innerHTML="&#xE86C;";
         checkBoxBtn.appendChild(checkBoxSpan);
         checkItemBoxAndTop.appendChild(checkBoxBtn);
