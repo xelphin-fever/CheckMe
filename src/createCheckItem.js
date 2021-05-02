@@ -4,7 +4,7 @@ import { appendChildren, addAttributes,addTagsToDiv, makeToolTip, makeEditButton
 
 //---EDIT OBJECT: allCheckItems---
 const editCheckObject = (() => {
-    let idCount=2;
+    let idCount=1;
     
     //Add New Check Item
     const addNewCheck = (title,checked,icon,tags,info,due,priority,project) => {
@@ -25,6 +25,9 @@ const editCheckObject = (() => {
     const returnCheckAt = (id) =>{
         return allCheckItems[id.toString()];
     }
+    const returnCheckAtString = (id) =>{
+        return allCheckItems[id];
+    }
 
     const updateCheckFor = (id, category, newValue) => {
         allCheckItems[id.toString()][category] = newValue;
@@ -35,7 +38,7 @@ const editCheckObject = (() => {
     }
 
     const deleteCheckAt = (id) =>{
-        delete allCheckItems[id.toString];
+        delete allCheckItems[id];
     }
 
     return {
@@ -44,6 +47,7 @@ const editCheckObject = (() => {
         updateCheckFor,
         mostRecentId,
         deleteCheckAt,
+        returnCheckAtString,
       };
 
 
@@ -61,7 +65,7 @@ const createCheckItem = (id) => {
 
     //CHECK ITEM
     let checkItem = document.createElement("div");
-    addAttributes(checkItem,[["class","check-item"],["id",`x${id}-check-item`],["data-project",allCheckItems[id].project],["style","display:block"]]);
+    addAttributes(checkItem,[["class","check-item"],["id",`x${id}-check-item`],["data-project",allCheckItems[id].project],["style",`display:block; order:${id}`]]);
 
     //Top DIV (always visible)
     let checkItemBoxAndTop = document.createElement("div");
@@ -173,16 +177,6 @@ let allCheckItems = {
         info:"Notes...",
         due: "00-00-00",
         priority: "3",
-        project: "x2-trip",
-    },
-    "1": {
-        title: "Read Travel Book",
-        checked: false,
-        icon: "&#x1F4D6;",
-        tags: ["travel","plan"],
-        info:"Notes...",
-        due: "00-00-00",
-        priority: "2",
         project: "x2-trip",
     },
 }

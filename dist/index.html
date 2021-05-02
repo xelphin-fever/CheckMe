@@ -60,9 +60,9 @@
                 <div class="dropdown">
                     <button class="dropbtn">Order By:</button>
                     <div class="dropdown-content">
-                      <a href="#">Entry Date</a>
-                      <a href="#">Priority</a>
-                      <a href="#">Deadline</a>
+                      <a href="#" id="dropdown-entry">Entry Date</a>
+                      <a href="#" id="dropdown-priority">Priority</a>
+                      <a href="#" id="dropdown-deadline">Deadline</a>
                     </div>
                 </div>
                 <button id="delete-project-btn"><span id="delete-project-span" class="material-icons md-48">&#xE872;</span></button> 
@@ -72,7 +72,7 @@
                 <!--Main Top-->
                 <div id="main-top-div">
                     <div id="main-title-div">
-                        <button id="edit-title-btn"><span id="edit-title-span" class="material-icons md-36">&#xE40A;</span></button>
+                        <div id="color-title-holder"><span id="color-title-span" class="material-icons md-36">&#xE40A;</span></div>
                         <h1 id="main-title" style="display:block">Trip</h1>
                         <input type="text" id="main-title-input" class="edit-input" maxlength="15" name="main-title-input" placeholder="" style="display:none">
                     </div>
@@ -90,7 +90,7 @@
                 <!--Main CheckList-->
                 <div id="main-checklist-div">
 
-                    <div class="check-item" id="x0-check-item" data-project="x2-trip" style="display:block">
+                    <div class="check-item" id="x0-check-item" data-project="x2-trip" style="display:block; order:0;">
                         <div class="check-item-box-top-div">
                             <button class="check-box-btn"><span class="material-icons md-36 check-box" id="x0-check-box" data-checked="false" style="color: #b4b4b4">&#xE86C;</span></button>
                             <div class="check-item-top" id="x0-check-item-top">
@@ -111,7 +111,7 @@
                                 <h5>Due: <span class="check-due" id="x0-due">00-00-00</span></h5>
                                 <h5>Priority: <span class="check-priority" id="x0-priority">3</span></h5>
                                 <div class="check-item-bottom-right">
-                                    
+
                                     <button class="check-edit-btn" id="x0-btn-icon"><span class="material-icons md-36">&#xE87C;</span></button>
                                     <button class="check-edit-btn" id="x0-btn-priority"><span class="material-icons md-36">&#xE16D;</span></button>
                                     <button class="check-edit-btn" id="x0-btn-due"><span class="material-icons md-36">&#xE916;</span></button>

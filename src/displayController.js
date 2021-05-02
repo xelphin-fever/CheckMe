@@ -2,6 +2,7 @@
 import { addAttributes, addTagsToDiv} from "./utilities"
 import { createBarProject, editProjectObject} from "./projects"
 import { editCheckObject } from "./createCheckItem";
+import Picker from 'vanilla-picker';
 
 
 //----CHECK ITEM-----
@@ -11,7 +12,7 @@ const checkItem = (() => {
     toggleChecks.addEventListener("click",toggleCheckItems)
 
     //CHECK
-
+    let allChecks = document.querySelectorAll(".check-item");
     let checkBoxs = document.querySelectorAll(".check-box");
     let allChecksDiv = document.querySelector("#main-checklist-div");
     let checkItemsTop = document.querySelectorAll(".check-item-top");
@@ -30,6 +31,18 @@ const checkItem = (() => {
 
     //DELETE
     let checkDelete = document.querySelectorAll(".check-edit-btn-delete");
+
+    //ORGANIZE
+    let dropEntry = document.querySelector("#dropdown-entry");
+    let dropPriority = document.querySelector("#dropdown-priority");
+    let dropDue = document.querySelector("#dropdown-deadline");
+    //
+    let organizeEntry = (event) => organize(event,"entry");
+    dropEntry.addEventListener("click",organizeEntry);
+    let organizePriority = (event) => organize(event,"priority");
+    dropPriority.addEventListener("click",organizePriority);
+    let organizeDue = (event) => organize(event,"due");
+    dropDue.addEventListener("click",organizeDue);
     
 
 
@@ -40,6 +53,7 @@ const checkItem = (() => {
     });
     const updateVariables = () => {
         console.log("updating variables");
+        allChecks = document.querySelectorAll(".check-item");
         checkItemsTop = document.querySelectorAll(".check-item-top");
         icons = document.querySelectorAll(".check-icon");
         checkTitleSend = document.querySelectorAll(".check-btn-title-send");
@@ -113,7 +127,7 @@ const checkItem = (() => {
 
     //TOGGLE -> SHOW/HIDE CHECKED
     function toggleCheckItems(){
-        let allChecks = document.querySelectorAll(".check-item");
+        allChecks = document.querySelectorAll(".check-item");
         if (toggleChecks.getAttribute("data-checked")=="true"){
             toggleChecks.setAttribute("data-checked","false");
         }
@@ -132,6 +146,22 @@ const checkItem = (() => {
         })
     }
 
+    //REPLACE CHECKBOX COLORS
+    const replaceCheckColor= (projectId, color) => {
+        allChecks = document.querySelectorAll(".check-item");
+        allChecks.forEach((check) => {
+            let checkId =check.getAttribute("id");
+            if (editCheckObject.returnCheckAt(checkId[1]).project==projectId){
+                let checkBox = document.querySelector(`#x${checkId[1]}-check-box`)
+                if (checkBox.getAttribute("data-checked")=="true"){
+                    checkBox.style.color= color;
+                }
+            }
+            
+            
+        })
+    }
+
 
     //CHECK/UNCHECK ITEMS
     function flipCheckBox(event){
@@ -139,6 +169,7 @@ const checkItem = (() => {
         let itemId = event.currentTarget.getAttribute("id");
         itemId=itemId[1];
         let projectAttribute = editCheckObject.returnCheckAt(itemId).project;
+        console.log("item is in: ",editCheckObject.returnCheckAt(itemId).project)
         let projectColor = editProjectObject.returnProperty(projectAttribute[1],"color");
         console.log("id and color",itemId,projectColor);
         if (editCheckObject.returnCheckAt(itemId).checked==false){
@@ -175,6 +206,7 @@ const checkItem = (() => {
         let checkItem = document.querySelector(`#x${itemId}-check-item`);
         console.log(checkItem);
         allChecksDiv.removeChild(checkItem);
+        console.log("deleting: ",itemId);
         editCheckObject.deleteCheckAt(itemId);
     }
 
@@ -233,9 +265,40 @@ const checkItem = (() => {
         }
     }
 
+    //ORGANIZE
+    function organize(event,type){
+        console.log("organize by:",type);
+        allChecks.forEach((checkItem) => {
+            let checkId = checkItem.getAttribute("id");
+            checkId=checkId[1];
+            let organizeUsing =checkId;
+            if (type=="priority"){
+                organizeUsing = (5- Number(editCheckObject.returnCheckAtString(checkId).priority)).toString();
+            }
+            else if (type=="due"){
+                let myDate =editCheckObject.returnCheckAtString(checkId).due;
+                let dateArray = myDate.split("-");
+                let total="";
+                console.log("dateArray: ",dateArray);
+                for (let i=0;i<dateArray.length;i++){
+                    total=total+ dateArray[i];
+                    console.log(total);
+                }
+                organizeUsing=total;
+                if (total=="000000"){
+                    console.log("am here")
+                    organizeUsing="100000000";
+                }
+            }
+            checkItem.style.order=organizeUsing;
+        })
+    }
+    
+
     return {
         changeCheckItems,
         deleteChecks,
+        replaceCheckColor,
     }
 
 })();
@@ -251,12 +314,14 @@ const project = (() => {
     let projectList = document.querySelectorAll(".project-item");
     let deleteProjectBtn =document.querySelector("#delete-project-btn");
     let currentProject ="x2-trip";
+    
 
     addProjectBtn.addEventListener("click", showInput);
     addProjectDiv.addEventListener("click", stopProp);
     window.addEventListener("click",hideInput);
     projectList.forEach((project) => project.addEventListener("click",navigateProject));
     deleteProjectBtn.addEventListener("click", deleteProject);
+    
 
     function showInput (){
         if (document.querySelector('.project-input-name') == null) {
@@ -346,6 +411,10 @@ const editDom = (() => {
     let mainInfoDiv = document.querySelector("#main-info-div");
     let mainInfo = document.querySelector("#main-info");
     let mainInfoInput = document.querySelector("#main-info-input");
+    //COLOR
+    let colorProjectBtn = document.querySelector("#color-title-span");
+    let colorProjectHolder = document.querySelector("#color-title-holder");
+    
     
 
 
@@ -419,6 +488,21 @@ const editDom = (() => {
     };
 
 
+    //PROJECT COLOR
+    let picker = new Picker(colorProjectHolder);
+    picker.onDone = function(myColor) {
+        let chosenColor=myColor.rgbaString;
+        console.log(chosenColor);
+        //colorProjectDiv.style.background = color.rgbaString;
+        //Change Circle Icon
+        editProjectObject.updateProjectFor(currentProjectId,"color",`color: ${chosenColor}`);
+        let projectAttribute = editProjectObject.returnProperty(currentProjectId,"attribute");
+        let projectList = document.querySelector(`#${projectAttribute}-h3`);
+        projectList.firstChild.style.color=chosenColor;
+        //Update Check Box's to Correct color
+        checkItem.replaceCheckColor(projectAttribute,chosenColor);
+
+    };
     
 
 

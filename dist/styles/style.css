@@ -152,7 +152,7 @@
     margin-right:20px;
     width: 500px;
 }
-button{
+button, #color-title-holder{
     background-color: transparent;
     border:none;
     outline: none;

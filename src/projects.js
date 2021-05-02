@@ -48,6 +48,9 @@ const editProjectObject = (() => {
     const updateProjectFor = (id, category, newValue) => {
         allProjects[id.toString()][category] = newValue;
     }
+    const updateProjectForString = (id, category, newValue) => {
+        allProjects[id][category] = newValue;
+    }
 
     const mostRecentId = () => {
         return idCount-1;
@@ -59,6 +62,7 @@ const editProjectObject = (() => {
         returnProperty,
         updateProjectFor,
         mostRecentId,
+        updateProjectForString,
       };
 
 
@@ -105,7 +109,7 @@ let allProjects = {
     "3": {
         title: "Work",
         icon: "&#xE061;",
-        color: "color:rgb(175, 134, 134);",
+        color: "color:rgb(74, 112, 74);",
         info: "Double-Click to Edit Me (and the Title)",
         attribute: "x3-work",
         removable: true,
