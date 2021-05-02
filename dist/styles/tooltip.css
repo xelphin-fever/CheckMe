@@ -4,7 +4,7 @@
 .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+    border-bottom: 1px dotted var(--dark-yellow); /* If you want dots under the hoverable text */
   }
   
   /* Tooltip text */
@@ -14,8 +14,8 @@
     bottom: 90%;
     left: 50%;
     margin-left: -150px;
-    background-color: black;
-    color: #fff;
+    background-color: var(--yellow);
+    color: var(--orange);
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
@@ -30,8 +30,8 @@
     bottom: 102%;
     left: 50%;
     margin-left: -110px;
-    background-color: black;
-    color: #fff;
+    background-color: var(--yellow);
+    color: var(--orange);
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;

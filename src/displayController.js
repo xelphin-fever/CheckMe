@@ -181,7 +181,7 @@ const checkItem = (() => {
         else{
             editCheckObject.updateCheckFor(itemId,"checked",false);
             event.currentTarget.setAttribute("data-checked","false");
-            event.currentTarget.setAttribute("style","color: #b4b4b4");
+            event.currentTarget.setAttribute("style","color: #e2d7be");
         }
     }
 
