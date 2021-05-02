@@ -111,11 +111,52 @@
                                 <h5>Due: <span class="check-due" id="x0-due">00-00-00</span></h5>
                                 <h5>Priority: <span class="check-priority" id="x0-priority">3</span></h5>
                                 <div class="check-item-bottom-right">
-
-                                    <button class="check-edit-btn" id="x0-btn-icon"><span class="material-icons md-36">&#xE87C;</span></button>
-                                    <button class="check-edit-btn" id="x0-btn-priority"><span class="material-icons md-36">&#xE16D;</span></button>
-                                    <button class="check-edit-btn" id="x0-btn-due"><span class="material-icons md-36">&#xE916;</span></button>
-                                    <button class="check-edit-btn" id="x0-btn-tag"><span class="material-icons md-36">&#xE54E;</span></button>
+                                    <div class="tooltip">
+                                        <button class="check-edit-btn" id="x0-btn-icon"><span class="material-icons md-36">&#xE87C;</span></button>
+                                        <span class="tooltiptext-v2">
+                                            <div class="tooltip-inner-div">
+                                                <h4>Enter Due Date <span class="material-icons md-36 check-btn-icon-send" id="x0-check-icon-send">&#xF1DF;</span></h4>
+                                                <div>
+                                                    <emoji-picker id="x0-check-icon-input" class="select-emoji-picker"></emoji-picker>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="tooltip">
+                                        <button class="check-edit-btn" id="x0-btn-priority"><span class="material-icons md-36">&#xE16D;</span></button>
+                                        <span class="tooltiptext-v2">
+                                            <div class="tooltip-inner-div">
+                                                <h4>Choose Priority <span class="material-icons md-36 check-btn-priority-send" id="x0-check-priority-send">&#xF1DF;</span></h4>
+                                                <div class="check-edit-div-priority">
+                                                    <p>Low</p>
+                                                    <input type="radio" id="x0-check-priority-input-1" name="x0-check-priority-input" value="1" checked="checked">
+                                                    <input type="radio" id="x0-check-priority-input-2" name="x0-check-priority-input" value="2">
+                                                    <input type="radio" id="x0-check-priority-input-3" name="x0-check-priority-input" value="3">
+                                                    <input type="radio" id="x0-check-priority-input-4" name="x0-check-priority-input" value="4">
+                                                    <input type="radio" id="x0-check-priority-input-5" name="x0-check-priority-input" value="5">
+                                                    <p>High</p>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="tooltip">
+                                        <button class="check-edit-btn" id="x0-btn-due"><span class="material-icons md-36">&#xE916;</span></button>
+                                        <span class="tooltiptext-v2">
+                                            <div class="tooltip-inner-div">
+                                                <h4>Enter Due Date <span class="material-icons md-36 check-btn-due-send" id="x0-check-due-send">&#xF1DF;</span></h4>
+                                                <input type="date" id="x0-check-due-input" class="edit-input" maxlength="20" placeholder="">
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="tooltip">
+                                        <button class="check-edit-btn" id="x0-btn-tag"><span class="material-icons md-36">&#xE54E;</span></button>
+                                        <span class="tooltiptext-v2">
+                                            <div class="tooltip-inner-div">
+                                                <h4>Enter Tags <span class="material-icons md-36 check-btn-tag-send" id="x0-check-tag-send">&#xF1DF;</span></h4>
+                                                <input type="text" id="x0-check-tag-input" class="edit-input" maxlength="20" placeholder="">
+                                            </div>
+                                        </span>
+                                    </div>
                                     <div class="tooltip">
                                         <button class="check-edit-btn" id="x0-btn-title"><span class="material-icons md-36">&#xE264;</span></button>
                                         <span class="tooltiptext-v2">
