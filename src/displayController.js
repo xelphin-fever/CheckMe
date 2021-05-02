@@ -10,6 +10,7 @@ const checkItem = (() => {
     //TOGGLE
     let toggleChecks = document.querySelector("#check-toggle");
     toggleChecks.addEventListener("click",toggleCheckItems)
+    
 
     //CHECK
     let allChecks = document.querySelectorAll(".check-item");
@@ -192,6 +193,27 @@ const checkItem = (() => {
             if (check.getAttribute("data-project")==project || (project=="x0-all")){
                 check.style.display= "block";
             }
+            else if (project=="x1-today"){
+                function completeWithZero(digit){
+                    if (digit.toString().length==1){
+                        digit="0"+digit;
+                    }
+                    return digit;
+                }
+                const now = new Date();
+                let day = now.getDate();
+                let month = now.getMonth()+1;
+                day=completeWithZero(day);
+                month=completeWithZero(month);
+                let year = now.getFullYear();
+                console.log("today is: ",`${year}-${month}-${day}`);
+                let checkId = check.getAttribute("id");
+                checkId=checkId[1];
+                let checkDate=editCheckObject.returnCheckAt(checkId).due;
+                if (checkDate==`${year}-${month}-${day}`){
+                    check.style.display= "block";
+                }
+            }
             else{
                 check.style.display="none";
             }
@@ -307,7 +329,10 @@ const checkItem = (() => {
 //----PROJECT-----
 
 const project = (() => {
+    //ADD
+    let addSpan = document.querySelector("#add-check-span");
 
+    //PROJECT
     let addedProjectsDiv = document.querySelector("#added-projects-div");
     const addProjectDiv = document.querySelector("#add-project-div");
     const addProjectBtn = document.querySelector("#add-project-span");
@@ -369,8 +394,10 @@ const project = (() => {
         checkItem.changeCheckItems(currentProject)
         //NOTE: Hide Delete Button if in x0-all or x-1-today
         deleteProjectBtn.style.display="block";
+        addSpan.style.display="block";
         if (currentProject=="x0-all" || currentProject=="x1-today"){
             deleteProjectBtn.style.display="none";
+            addSpan.style.display="none";
         }
     }
 
